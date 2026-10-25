@@ -1,0 +1,17 @@
+# Data handling
+numpy==2.5.3
+pandas==3.0.6
+
+# Machine learning
+scikit-learn==1.9.1
+torch==2.14.0
+
+# Pretrained transformer and its tokenizer
+transformers==5.3.0
+
+# Visualization
+matplotlib==3.11.2
+
+# Notebook environment
+ipykernel==7.3.0
+notebook==7.6.3
