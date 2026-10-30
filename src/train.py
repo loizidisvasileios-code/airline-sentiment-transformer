@@ -39,7 +39,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler
         started = time.perf_counter()
         model.train()
         running_loss = 0.0
-        for input_ids, attention_mask, labels in train_loader:
+        for step, (input_ids, attention_mask, labels) in enumerate(train_loader):
             input_ids, attention_mask = input_ids.to(device), attention_mask.to(device)
             labels = labels.to(device)
             optimizer.zero_grad()
@@ -50,6 +50,9 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, scheduler
             optimizer.step()
             scheduler.step()  # Once per batch, so the decay follows the step schedule above
             running_loss += loss.item() * labels.size(0)  # Weight by batch size, the last batch is smaller
+            if (step + 1) % 50 == 0:  # Otherwise the epoch stays silent for most of an hour
+                print(f"  step {step + 1}/{len(train_loader)} | "
+                      f"{(time.perf_counter() - started) / 60:.1f} min", flush=True)
         train_loss = running_loss / len(train_loader.dataset)
 
         model.eval()

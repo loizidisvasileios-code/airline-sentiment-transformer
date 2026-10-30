@@ -1,4 +1,4 @@
-"""Metrics, loss curves and confusion matrix, carried over from the previous exercises."""
+"""Metrics, loss curves and confusion matrix"""
 
 import matplotlib.pyplot as plt
 import numpy as np

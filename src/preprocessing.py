@@ -1,7 +1,4 @@
-"""Dataset loading and the minimal preparation a pretrained transformer needs.
-
-The cleaning rules come from Exercise 1
-"""
+"""Dataset loading and the minimal preparation a pretrained transformer needs."""
 
 import html
 import re
@@ -38,7 +35,7 @@ def load_raw_data():
 
 
 def clean_text(text):
-    """Clean a single tweet."""
+    """Drop empty and dublicate tweets."""
     text = html.unescape(text)
     text = text.lower()
     text = text.replace("’", "'")
@@ -52,7 +49,6 @@ def clean_text(text):
 
 
 def preprocess_dataset(df):
-    """Keep the rows from exercise 1"""
     rows_in = len(df)
 
     df = df[[TEXT_COL, LABEL_COL]].copy()
